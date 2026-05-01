@@ -178,6 +178,7 @@ body {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  cursor: zoom-in;
 }
 
 .photo-slot img {
@@ -187,6 +188,35 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 7px;
+  transition: transform 0.3s ease;
+}
+
+.photo-slot:hover img {
+  transform: scale(1.04);
+}
+
+/* --- LIGHTBOX --- */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+#lightbox.open {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.6);
 }
 
 /* --- CHARACTER CARDS --- */
@@ -411,7 +441,7 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/photo-famille-30-canards.jpg" alt="Photo de famille — les 30 canards réunis">
+          <img src="images/photo-famille-30-canards.jpg" alt="Photo de famille — les 30 canards réunis">
         </div>
       </div>
     </div>
@@ -437,13 +467,13 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/rois-au-festin.jpg" alt="Les 4 rois au festin">
+          <img src="images/rois-au-festin.jpg" alt="Les 4 rois au festin">
         </div>
         <div class="photo-slot">
-          <img src="/images/mafieux-dans-ombre.jpg" alt="Les mafieux dans l'ombre">
+          <img src="images/mafieux-dans-ombre.jpg" alt="Les mafieux dans l'ombre">
         </div>
         <div class="photo-slot">
-          <img src="/images/mot-de-rancon.jpg" alt="Le mot de rançon">
+          <img src="images/mot-de-rancon.jpg" alt="Le mot de rançon">
         </div>
       </div>
     </div>
@@ -471,10 +501,10 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/sherlock-enquete.jpg" alt="Sherlock Coins enquête">
+          <img src="images/sherlock-enquete.jpg" alt="Sherlock Coins enquête">
         </div>
         <div class="photo-slot">
-          <img src="/images/equipe-detectives.jpg" alt="L'équipe de détectives">
+          <img src="images/equipe-detectives.jpg" alt="L'équipe de détectives">
         </div>
       </div>
     </div>
@@ -500,10 +530,10 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/totally-spies-qg.jpg" alt="Les 7 Totally Spies au QG">
+          <img src="images/totally-spies-qg.jpg" alt="Les 7 Totally Spies au QG">
         </div>
         <div class="photo-slot">
-          <img src="/images/decollage-montagne.jpg" alt="Décollage vers la montagne">
+          <img src="images/decollage-montagne.jpg" alt="Décollage vers la montagne">
         </div>
       </div>
     </div>
@@ -531,13 +561,13 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/hippopotames.jpg" alt="Face aux hippopotames">
+          <img src="images/hippopotames.jpg" alt="Face aux hippopotames">
         </div>
         <div class="photo-slot">
-          <img src="/images/dinosaures.jpg" alt="Les dinosaures et le mot de passe">
+          <img src="images/dinosaures.jpg" alt="Les dinosaures et le mot de passe">
         </div>
         <div class="photo-slot">
-          <img src="/images/lutins-geants.jpg" alt="Les lutins géants">
+          <img src="images/lutins-geants.jpg" alt="Les lutins géants">
         </div>
       </div>
     </div>
@@ -563,13 +593,13 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/flocon-descente.jpg" alt="Flocon en pleine descente">
+          <img src="images/flocon-descente.jpg" alt="Flocon en pleine descente">
         </div>
         <div class="photo-slot">
-          <img src="/images/crampon-paroi.jpg" alt="Crampon sur la paroi">
+          <img src="images/crampon-paroi.jpg" alt="Crampon sur la paroi">
         </div>
         <div class="photo-slot">
-          <img src="/images/ascension-grotte.jpg" alt="L'ascension vers la grotte">
+          <img src="images/ascension-grotte.jpg" alt="L'ascension vers la grotte">
         </div>
       </div>
     </div>
@@ -597,13 +627,13 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/palmipette-livreuse.jpg" alt="Palmipette déguisée en livreuse">
+          <img src="images/palmipette-livreuse.jpg" alt="Palmipette déguisée en livreuse">
         </div>
         <div class="photo-slot">
-          <img src="/images/assaut-final.jpg" alt="L'assaut — tout le monde surgit !">
+          <img src="images/assaut-final.jpg" alt="L'assaut — tout le monde surgit !">
         </div>
         <div class="photo-slot">
-          <img src="/images/liberation-rois.jpg" alt="Libération des rois">
+          <img src="images/liberation-rois.jpg" alt="Libération des rois">
         </div>
       </div>
     </div>
@@ -638,13 +668,13 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/tribunal.jpg" alt="Le tribunal en session">
+          <img src="images/tribunal.jpg" alt="Le tribunal en session">
         </div>
         <div class="photo-slot">
-          <img src="/images/juges-avocats.jpg" alt="Les juges et les avocats">
+          <img src="images/juges-avocats.jpg" alt="Les juges et les avocats">
         </div>
         <div class="photo-slot">
-          <img src="/images/mafieux-verdict.jpg" alt="Les mafieux face au verdict">
+          <img src="images/mafieux-verdict.jpg" alt="Les mafieux face au verdict">
         </div>
       </div>
     </div>
@@ -668,10 +698,10 @@ body {
 
       <div class="photo-grid">
         <div class="photo-slot">
-          <img src="/images/banquet-final.jpg" alt="Le grand banquet final">
+          <img src="images/banquet-final.jpg" alt="Le grand banquet final">
         </div>
         <div class="photo-slot">
-          <img src="/images/tous-canards-reunis.jpg" alt="Tous les canards réunis">
+          <img src="images/tous-canards-reunis.jpg" alt="Tous les canards réunis">
         </div>
       </div>
     </div>
@@ -689,6 +719,22 @@ body {
   <button onclick="window.print()">🖨️ Imprimer / PDF</button>
 </div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+document.querySelectorAll('.photo-slot img').forEach(img => {
+  img.addEventListener('click', () => {
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+});
+</script>
 
 </body>
 </html>
