@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦆 La Grande Épopée des 30 Canards</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #D4A843;
+  --gold-light: #F2D98B;
+  --ink: #1A1A2E;
+  --parchment: #F5F0E6;
+  --parchment-dark: #E8DFD0;
+  --red-accent: #A0392D;
+  --blue-accent: #2D5F8A;
+  --green-accent: #3D6B4F;
+  --shadow: rgba(26, 26, 46, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--ink);
+  color: var(--ink);
+  font-family: 'Lora', Georgia, serif;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* --- COVER --- */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, #1A1A2E 0%, #16213E 40%, #0F3460 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(212,168,67,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(212,168,67,0.1) 0%, transparent 50%);
+}
+
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 4px 30px rgba(212,168,67,0.3);
+  position: relative;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.cover .subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--gold-light);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.cover .duck-parade {
+  font-size: 2.5rem;
+  letter-spacing: 0.3rem;
+  position: relative;
+  margin-bottom: 2.5rem;
+  animation: waddle 3s ease-in-out infinite;
+}
+
+@keyframes waddle {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(8px) rotate(2deg); }
+  75% { transform: translateX(-8px) rotate(-2deg); }
+}
+
+.cover .scroll-hint {
+  position: relative;
+  color: var(--gold-light);
+  opacity: 0.5;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* --- CHAPTERS --- */
+.chapter {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.chapter-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.chapter h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.chapter p {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.chapter .quote {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--red-accent);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(212,168,67,0.08);
+  border-radius: 0 8px 8px 0;
+}
+
+/* --- SCENE SECTIONS (alternating bg) --- */
+.scene {
+  padding: 3rem 0;
+}
+
+.scene:nth-child(odd) .scene-inner {
+  background: var(--parchment);
+}
+
+.scene:nth-child(even) .scene-inner {
+  background: var(--parchment-dark);
+}
+
+.scene-inner {
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 4px 30px var(--shadow);
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* --- PHOTO ZONES --- */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.photo-slot {
+  aspect-ratio: 4/3;
+  border: 3px dashed var(--gold);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(212,168,67,0.05);
+}
+
+.photo-slot:hover {
+  border-color: var(--red-accent);
+  background: rgba(212,168,67,0.12);
+  transform: scale(1.02);
+}
+
+.photo-slot.has-photo {
+  border-style: solid;
+  border-color: var(--gold);
+}
+
+.photo-slot .placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+.photo-slot .placeholder-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--ink);
+  opacity: 0.5;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+}
+
+.photo-slot .remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.photo-slot.has-photo .remove-btn {
+  display: flex;
+}
+
+.photo-slot .remove-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.photo-slot input[type="file"] {
+  display: none;
+}
+
+/* --- CHARACTER CARDS --- */
+.characters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.char-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: transform 0.2s;
+}
+
+.char-card:hover {
+  transform: translateY(-3px);
+}
+
+.char-card .emoji {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.char-card .name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.char-card .role {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--blue-accent);
+}
+
+/* --- SEPARATOR --- */
+.separator {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.8rem;
+  letter-spacing: 1rem;
+  opacity: 0.3;
+}
+
+/* --- VERDICT BOX --- */
+.verdict {
+  background: linear-gradient(135deg, var(--ink) 0%, #16213E 100%);
+  color: var(--gold-light);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.verdict h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.verdict p {
+  color: var(--parchment);
+  text-align: center;
+}
+
+/* --- EPILOGUE --- */
+.epilogue-motto {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--gold);
+  background: var(--ink);
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  line-height: 1.5;
+}
+
+/* --- FOOTER --- */
+.ending {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--ink);
+  color: var(--gold-light);
+}
+
+.ending .fin {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.ending .note {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* --- PRINT --- */
+.print-bar {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+
+.print-bar button {
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+}
+
+.print-bar button:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+@media print {
+  .print-bar { display: none; }
+  .photo-slot .remove-btn { display: none !important; }
+  .photo-slot .placeholder-icon,
+  .photo-slot .placeholder-text { display: none; }
+  .photo-slot { border-style: solid; border-color: #ccc; }
+  .scene-inner { break-inside: avoid; }
+  body { background: white; }
+}
+
+@media (max-width: 600px) {
+  .photo-grid { grid-template-columns: 1fr 1fr; }
+  .characters { grid-template-columns: 1fr 1fr; }
+  .scene-inner { padding: 2rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="duck-parade">🦆🦆🦆🦆🦆</div>
+  <h1>La Grande Épopée<br>des 30 Canards<br>du Royaume de Coinville</h1>
+  <div class="subtitle">Une histoire vraie (ou presque) retrouvée dans un appartement</div>
+  <div class="scroll-hint">↓ Descendez pour lire l'histoire ↓</div>
+</div>
+
+<!-- ========== SCENE 1 : LES PERSONNAGES ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Préambule</div>
+      <h2>👑 Les Personnages de cette épopée</h2>
+
+      <p>Avant que l'aventure ne commence, faisons connaissance avec les 30 canards qui en sont les héros…</p>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: var(--gold);">Les Quatre Rois</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">👑</div><div class="name">Édouard le Magnifique</div><div class="role">Roi de l'Étang Nord</div></div>
+        <div class="char-card"><div class="emoji">👑</div><div class="name">Théodore le Sage</div><div class="role">Roi de l'Étang Sud</div></div>
+        <div class="char-card"><div class="emoji">👑</div><div class="name">Léopold le Brave</div><div class="role">Roi de l'Étang de l'Est</div></div>
+        <div class="char-card"><div class="emoji">👑</div><div class="name">Alphonse le Juste</div><div class="role">Roi de l'Étang de l'Ouest</div></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: var(--red-accent);">Les Six Mafieux</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">🎩</div><div class="name">Don Colvert</div><div class="role">Le parrain</div></div>
+        <div class="char-card"><div class="emoji">🔪</div><div class="name">Beccassino</div><div class="role">Le bras droit</div></div>
+        <div class="char-card"><div class="emoji">💪</div><div class="name">Palmipaldi</div><div class="role">L'homme de main</div></div>
+        <div class="char-card"><div class="emoji">🖤</div><div class="name">Donna Barbota</div><div class="role">La stratège</div></div>
+        <div class="char-card"><div class="emoji">💋</div><div class="name">Malvina la Cane</div><div class="role">Experte en chantage</div></div>
+        <div class="char-card"><div class="emoji">💃</div><div class="name">Canardella</div><div class="role">La séductrice</div></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: var(--blue-accent);">Les Quatre Détectives</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">🔍</div><div class="name">Sherlock Coins</div><div class="role">Génie de la déduction</div></div>
+        <div class="char-card"><div class="emoji">🕵️</div><div class="name">Plumeau Poirot</div><div class="role">L'élégant enquêteur</div></div>
+        <div class="char-card"><div class="emoji">🚬</div><div class="name">Magret Maigret</div><div class="role">Le flic tenace</div></div>
+        <div class="char-card"><div class="emoji">🧥</div><div class="name">Colvert Columbo</div><div class="role">L'air de rien…</div></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: var(--green-accent);">Les Trois Canards de Montagne</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">⛷️</div><div class="name">Flocon</div><div class="role">Le skieur intrépide</div></div>
+        <div class="char-card"><div class="emoji">🧗</div><div class="name">Crampon</div><div class="role">L'alpiniste</div></div>
+        <div class="char-card"><div class="emoji">🏂</div><div class="name">Avalanche</div><div class="role">Le snowboardeur</div></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: #9B59B6;">Les Sept Totally Spies</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">💅</div><div class="name">Plumia</div><div class="role">La leader</div></div>
+        <div class="char-card"><div class="emoji">🥋</div><div class="name">Canardine</div><div class="role">Arts martiaux</div></div>
+        <div class="char-card"><div class="emoji">🎭</div><div class="name">Palmipette</div><div class="role">Déguisement</div></div>
+        <div class="char-card"><div class="emoji">💻</div><div class="name">Barbotine</div><div class="role">Hackeuse</div></div>
+        <div class="char-card"><div class="emoji">🤸</div><div class="name">Duvette</div><div class="role">Acrobate</div></div>
+        <div class="char-card"><div class="emoji">🕶️</div><div class="name">Cancane</div><div class="role">Infiltreuse</div></div>
+        <div class="char-card"><div class="emoji">🎆</div><div class="name">Coinnette</div><div class="role">Explosifs (confettis)</div></div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; margin: 1.5rem 0 0.8rem; color: var(--ink);">La Justice</h3>
+      <div class="characters">
+        <div class="char-card"><div class="emoji">⚖️</div><div class="name">Maître Becdur</div><div class="role">Avocat de la couronne</div></div>
+        <div class="char-card"><div class="emoji">📜</div><div class="name">Maître Plaidcanard</div><div class="role">Avocat de la défense</div></div>
+        <div class="char-card"><div class="emoji">🔥</div><div class="name">Maître Jugulaire</div><div class="role">Procureur</div></div>
+        <div class="char-card"><div class="emoji">🌟</div><div class="name">Maître Palme d'Or</div><div class="role">Parties civiles</div></div>
+        <div class="char-card"><div class="emoji">🏛️</div><div class="name">Juge Canardeau</div><div class="role">Président du tribunal</div></div>
+        <div class="char-card"><div class="emoji">📖</div><div class="name">Juge Marbec</div><div class="role">Assesseur</div></div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text">Photo de famille — les 30 canards réunis</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 2 : L'ENLÈVEMENT ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Premier</div>
+      <h2>🌙 La Nuit du Grand Enlèvement</h2>
+
+      <p>C'était un soir paisible au Royaume de Coinville. Les quatre rois — Édouard le Magnifique, Théodore le Sage, Léopold le Brave et Alphonse le Juste — festoyaient ensemble au Palais des Nénuphars pour célébrer la saison des moustiques gras. Les rires résonnaient, le pain de mie trempé coulait à flots, et personne ne remarqua les six ombres qui se glissaient entre les roseaux.</p>
+
+      <p>Don Colvert ajusta son chapeau de feutre et fit un signe du bec. Beccassino et Palmipaldi surgirent par la porte de service, tandis que Donna Barbota, Malvina la Cane et Canardella neutralisaient les gardes royaux avec un numéro de danse si envoûtant que les pauvres soldats en oublièrent de garder les yeux ouverts.</p>
+
+      <p>En moins de temps qu'il n'en faut pour dire « coin », les quatre rois furent fourrés dans des sacs de jute estampillés « Graines Bio — Rien à déclarer » et chargés sur une barque silencieuse.</p>
+
+      <div class="quote">« Si vous voulez revoir vos rois, déposez 40 millions de graines de tournesol au pied du Vieux Chêne avant la pleine lune. Signé : La Mafia des Plumes. »</div>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">👑</span>
+          <span class="placeholder-text">Les 4 rois au festin</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🎩</span>
+          <span class="placeholder-text">Les mafieux dans l'ombre</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">💰</span>
+          <span class="placeholder-text">Le mot de rançon</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 3 : LES DÉTECTIVES ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Deux</div>
+      <h2>🔍 L'Enquête Commence</h2>
+
+      <p>Au petit matin, ce fut la panique générale. Le conseil des mares convoqua immédiatement les meilleurs enquêteurs du royaume.</p>
+
+      <p>Sherlock Coins arriva le premier, loupe en main, reniflant chaque brin d'herbe. « Élémentaire, mes chers coins. Ces traces de palmes mènent vers le nord. Et cette odeur… c'est du pain d'épice industriel. Seul Don Colvert en mange. »</p>
+
+      <p>Plumeau Poirot lissa sa moustache. « Il faut de la méthode, mes amis. Pas de précipitation. Chaque miette raconte une histoire. »</p>
+
+      <p>Magret Maigret s'alluma une pipe imaginaire (les vraies étant interdites dans les zones humides protégées) et grommela : « Moi, je connais la chanson. La Mafia des Plumes ne court jamais bien loin. Ils planquent toujours leurs prises en altitude, là où aucun canard sensé n'irait nager. »</p>
+
+      <p>Colvert Columbo, en retard comme toujours, débarqua avec son imperméable froissé. « Oh, excusez-moi, juste une dernière petite question… Est-ce que quelqu'un a vérifié si les rois avaient leur téléphone sur eux ? Non ? Ah, dommage. »</p>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🔍</span>
+          <span class="placeholder-text">Sherlock Coins enquête</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🕵️</span>
+          <span class="placeholder-text">L'équipe de détectives</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 4 : TOTALLY SPIES ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Trois</div>
+      <h2>💅 Totally Spies à la Rescousse</h2>
+
+      <p>Pendant ce temps, au QG ultra-secret des Totally Spies Canard (un buisson de houx équipé de Wi-Fi), l'alerte rouge venait de retentir.</p>
+
+      <p>Plumia rassembla son équipe en un clin d'œil. « Mesdames, la situation est critique. Les rois ont été enlevés. Les détectives sont sur le coup, mais ils avancent à pattes de canard — littéralement. On va prendre les devants. »</p>
+
+      <p>Barbotine, la hackeuse, avait déjà piraté le GPS de la barque des mafieux. « Leur signal s'est perdu au pied de la Grande Montagne du Bec Pointu. » Canardine enfila ses gants de combat. Palmipette vérifia sa mallette de déguisements. Duvette fit trois saltos pour s'échauffer. Cancane chargea ses fausses identités sur une clé USB étanche. Coinnette remplit ses poches de bombes à confettis.</p>
+
+      <p>« En route, les filles ! » lança Plumia. Et les sept agents spéciaux s'envolèrent vers la montagne.</p>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">💅</span>
+          <span class="placeholder-text">Les 7 Totally Spies au QG</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🚀</span>
+          <span class="placeholder-text">Décollage vers la montagne</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 5 : TRAVERSÉE ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Quatre</div>
+      <h2>🦛 La Traversée des Terres Sauvages</h2>
+
+      <p>Les détectives progressaient par voie terrestre. Et le chemin n'allait pas être de tout repos.</p>
+
+      <p>À la lisière de la Forêt des Fougères Géantes, Sherlock Coins s'arrêta net. Devant eux, trois hippopotames de la taille de camionnettes se prélassaient en travers du sentier, mâchonnant des nénuphars comme des chips.</p>
+
+      <p>« Excusez-moi, vous bloquez le passage », tenta poliment Plumeau Poirot. Le plus gros hippopotame ouvrit un œil. « Et alors ? On est chez nous ici, les piafs. » Colvert Columbo s'approcha d'un air distrait et obtint l'information : les sacs suspects étaient passés par la Vallée des Échos, direction la montagne.</p>
+
+      <p>À peine les hippopotames dépassés, les détectives tombèrent nez à bec avec un troupeau de dinosaures. Trois diplodocus broutaient les cimes des arbres tandis qu'un tricératops grattait le sol d'un air grognon. Le tricératops leur bloqua la route. « Mot de passe ! » — « … Tournesol ? » tenta Columbo. « Coin-rrect ! Passez. »</p>
+
+      <p>Plus loin, une bande de lutins géants — trois fois la taille d'un canard — jouaient aux cartes en riant bruyamment. Ils confirmèrent : des types louches étaient passés avec des gros sacs, direction le sommet.</p>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🦛</span>
+          <span class="placeholder-text">Face aux hippopotames</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🦕</span>
+          <span class="placeholder-text">Les dinosaures et le mot de passe</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🧝</span>
+          <span class="placeholder-text">Les lutins géants</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 6 : MONTAGNE ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Cinq</div>
+      <h2>⛰️ L'Ascension du Bec Pointu</h2>
+
+      <p>La Grande Montagne du Bec Pointu se dressait devant eux, couverte de neige et de mystère. Et c'est là que les détectives croisèrent les trois canards de montagne.</p>
+
+      <p>Flocon déboula sur ses skis dans un nuage de poudreuse et s'arrêta pile devant Sherlock Coins. « Salut les gars ! Vous montez ? » Crampon, suspendu à la paroi rocheuse, cria d'en haut : « Il y a du mouvement au sommet ! J'ai vu de la lumière dans la grotte des Stalactites Dorées ! »</p>
+
+      <p>Avalanche, qui redescendait en snowboard, confirma : « Y a des types chelous là-haut. Six canards avec des lunettes noires et des costards. Ils gardent l'entrée d'une grotte. »</p>
+
+      <p>Crampon leur traça un itinéraire d'escalade, Flocon leur prêta des raquettes, et Avalanche promit de créer une diversion en déclenchant une mini-avalanche de confettis si nécessaire.</p>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">⛷️</span>
+          <span class="placeholder-text">Flocon en pleine descente</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🧗</span>
+          <span class="placeholder-text">Crampon sur la paroi</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🏔️</span>
+          <span class="placeholder-text">L'ascension vers la grotte</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 7 : L'ASSAUT ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Six</div>
+      <h2>💥 L'Assaut Final</h2>
+
+      <p>Les Totally Spies arrivaient par le versant opposé. Barbotine avait capté les fréquences radio de la mafia. « Don Colvert perd patience. Il menace de teindre les plumes du Roi Léopold en rose fluo si la rançon n'arrive pas. »</p>
+
+      <p>Le plan se mit en marche. Palmipette, déguisée en livreuse avec une fausse moustache et une casquette, se présenta à l'entrée de la grotte. « Livraison spéciale ! 40 millions de graines de tournesol ! » Palmipaldi ouvrit la porte, méfiant. Malvina le poussa : « Laisse-la entrer, imbécile. L'argent, c'est l'argent. »</p>
+
+      <p>Pendant que Canardella vérifiait les sacs (remplis de cailloux peints en noir — merci Coinnette), les détectives et les Totally Spies surgirent de partout. Sherlock Coins par la porte principale ! Magret Maigret par la fenêtre ! Canardine en rappel depuis le plafond ! Duvette en triple salto par la cheminée ! Plumeau Poirot par la porte de derrière, sans un cheveu de travers !</p>
+
+      <p>Don Colvert tenta de fuir, mais Colvert Columbo l'attendait tranquillement à la sortie, adossé au rocher. « Oh, une dernière petite chose, Don Colvert… Vous êtes en état d'arrestation. » Coinnette lança ses bombes à confettis et, dans la confusion scintillante, Barbotine coupa les liens des quatre rois.</p>
+
+      <p>Édouard le Magnifique se leva, secoua ses plumes royales et déclara : « Nous avons été royalement ennuyés. Qu'on juge ces malfrats ! »</p>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🎭</span>
+          <span class="placeholder-text">Palmipette déguisée en livreuse</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">💥</span>
+          <span class="placeholder-text">L'assaut — tout le monde surgit !</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🎉</span>
+          <span class="placeholder-text">Libération des rois</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 8 : LE PROCÈS ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Chapitre Sept</div>
+      <h2>⚖️ Le Grand Procès de Coinville</h2>
+
+      <p>Trois jours plus tard, le tribunal de Coinville ouvrit ses portes pour le procès du siècle. Tout le royaume s'était déplacé. Les grenouilles vendaient du pop-corn. Les libellules assuraient la retransmission aérienne.</p>
+
+      <p>Le Juge Canardeau le Sévère frappa son marteau trois fois. « Silence dans la mare ! Le procès de la Mafia des Plumes est ouvert. » La Juge Marbec, à ses côtés, ajusta ses lunettes et ouvrit le dossier, épais comme un dictionnaire.</p>
+
+      <p>Maître Jugulaire, le procureur, se leva. « Les accusés ont commis le crime le plus odieux de l'histoire de Coinville. Ils ont exigé 40 millions de graines de tournesol ! Quarante millions ! Savez-vous combien de pique-niques cela représente ? »</p>
+
+      <p>Maître Becdur, avocat de la couronne, présenta les preuves : les sacs de jute, le mot de rançon, et un reçu de pain d'épice industriel au nom de Don Colvert.</p>
+
+      <p>Maître Plaidcanard fit de son mieux pour la défense. « Mon client est un incompris. C'est un artiste. L'enlèvement était… une performance artistique. Un happening ! » Le Juge Canardeau ne fut pas convaincu. « Un happening à 40 millions de graines ? »</p>
+
+      <p>Maître Palme d'Or livra un plaidoyer flamboyant pour les parties civiles. « Quatre rois privés de leur dignité ! Quatre couronnes jetées dans la boue ! La justice doit être exemplaire ! »</p>
+
+      <div class="verdict">
+        <h3>⚖️ Le Verdict</h3>
+        <p>Les six mafieux furent condamnés à un an de travaux d'intérêt général : nettoyer les mares, distribuer du pain aux canetons, et écrire une lettre d'excuses de 500 mots — chacun — aux quatre rois. Don Colvert, en prime, fut condamné à renoncer au pain d'épice industriel pendant six mois.</p>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🏛️</span>
+          <span class="placeholder-text">Le tribunal en session</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">⚖️</span>
+          <span class="placeholder-text">Les juges et les avocats</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">😬</span>
+          <span class="placeholder-text">Les mafieux face au verdict</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separator">🦆 · 🦆 · 🦆</div>
+
+<!-- ========== SCENE 9 : ÉPILOGUE ========== -->
+<div class="scene">
+  <div class="scene-inner">
+    <div class="chapter">
+      <div class="chapter-number">Épilogue</div>
+      <h2>🎊 Le Banquet de la Victoire</h2>
+
+      <p>Ce soir-là, tout Coinville célébra. Les quatre rois retrouvèrent leurs trônes. Les détectives furent décorés de la Médaille du Bec d'Or. Les Totally Spies reçurent la Palme de Bravoure. Les trois canards de montagne furent nommés Gardiens Officiels du Bec Pointu. Et même les hippopotames, les dinosaures et les lutins géants furent invités à la fête.</p>
+
+      <p>On dansa, on chanta, on mangea du pain de mie jusqu'à l'aube.</p>
+
+      <div class="epilogue-motto">« Qui s'en prend à un canard<br>s'en prend à tous les canards. »</div>
+
+      <div class="photo-grid">
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🎊</span>
+          <span class="placeholder-text">Le grand banquet final</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+        <div class="photo-slot" onclick="this.querySelector('input').click()">
+          <input type="file" accept="image/*" onchange="loadPhoto(this)">
+          <span class="placeholder-icon">🦆</span>
+          <span class="placeholder-text">Tous les canards réunis</span>
+          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENDING -->
+<div class="ending">
+  <div class="fin">— FIN —</div>
+  <div class="note">Une histoire en 30 canards, ni un de plus, ni un de moins.<br>Retrouvés dans un appartement, ils avaient visiblement beaucoup de choses à raconter.</div>
+  <div style="margin-top:1rem; font-family:'Caveat',cursive; font-size:1rem; opacity:0.4;">Cliquez sur les emplacements pour ajouter vos photos 📸</div>
+</div>
+
+<!-- PRINT BUTTON -->
+<div class="print-bar">
+  <button onclick="window.print()">🖨️ Imprimer / PDF</button>
+</div>
+
+<script>
+function loadPhoto(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    const slot = input.closest('.photo-slot');
+    reader.onload = function(e) {
+      // Remove existing img if any
+      const existing = slot.querySelector('img');
+      if (existing) existing.remove();
+      
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      slot.appendChild(img);
+      slot.classList.add('has-photo');
+      
+      // Hide placeholder
+      const icon = slot.querySelector('.placeholder-icon');
+      const text = slot.querySelector('.placeholder-text');
+      if (icon) icon.style.display = 'none';
+      if (text) text.style.display = 'none';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function removePhoto(event, btn) {
+  event.stopPropagation();
+  const slot = btn.closest('.photo-slot');
+  const img = slot.querySelector('img');
+  if (img) img.remove();
+  slot.classList.remove('has-photo');
+  
+  // Reset file input
+  const input = slot.querySelector('input[type="file"]');
+  if (input) input.value = '';
+  
+  // Show placeholder again
+  const icon = slot.querySelector('.placeholder-icon');
+  const text = slot.querySelector('.placeholder-text');
+  if (icon) icon.style.display = '';
+  if (text) text.style.display = '';
+}
+</script>
+
+</body>
+</html>
