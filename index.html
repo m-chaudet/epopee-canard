@@ -174,43 +174,10 @@ body {
 
 .photo-slot {
   aspect-ratio: 4/3;
-  border: 3px dashed var(--gold);
+  border: 3px solid var(--gold);
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  background: rgba(212,168,67,0.05);
-}
-
-.photo-slot:hover {
-  border-color: var(--red-accent);
-  background: rgba(212,168,67,0.12);
-  transform: scale(1.02);
-}
-
-.photo-slot.has-photo {
-  border-style: solid;
-  border-color: var(--gold);
-}
-
-.photo-slot .placeholder-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  opacity: 0.6;
-}
-
-.photo-slot .placeholder-text {
-  font-family: 'Caveat', cursive;
-  font-size: 1rem;
-  color: var(--ink);
-  opacity: 0.5;
-  text-align: center;
-  padding: 0 0.5rem;
 }
 
 .photo-slot img {
@@ -220,39 +187,6 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 7px;
-}
-
-.photo-slot .remove-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--red-accent);
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  line-height: 1;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.photo-slot.has-photo .remove-btn {
-  display: flex;
-}
-
-.photo-slot .remove-btn:hover {
-  background: #c0392b;
-  transform: scale(1.1);
-}
-
-.photo-slot input[type="file"] {
-  display: none;
 }
 
 /* --- CHARACTER CARDS --- */
@@ -390,10 +324,7 @@ body {
 
 @media print {
   .print-bar { display: none; }
-  .photo-slot .remove-btn { display: none !important; }
-  .photo-slot .placeholder-icon,
-  .photo-slot .placeholder-text { display: none; }
-  .photo-slot { border-style: solid; border-color: #ccc; }
+  .photo-slot { border-color: #ccc; }
   .scene-inner { break-inside: avoid; }
   body { background: white; }
 }
@@ -479,11 +410,8 @@ body {
       </div>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">📸</span>
-          <span class="placeholder-text">Photo de famille — les 30 canards réunis</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/photo-famille-30-canards.jpg" alt="Photo de famille — les 30 canards réunis">
         </div>
       </div>
     </div>
@@ -508,23 +436,14 @@ body {
       <div class="quote">« Si vous voulez revoir vos rois, déposez 40 millions de graines de tournesol au pied du Vieux Chêne avant la pleine lune. Signé : La Mafia des Plumes. »</div>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">👑</span>
-          <span class="placeholder-text">Les 4 rois au festin</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/rois-au-festin.jpg" alt="Les 4 rois au festin">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🎩</span>
-          <span class="placeholder-text">Les mafieux dans l'ombre</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/mafieux-dans-ombre.jpg" alt="Les mafieux dans l'ombre">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">💰</span>
-          <span class="placeholder-text">Le mot de rançon</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/mot-de-rancon.jpg" alt="Le mot de rançon">
         </div>
       </div>
     </div>
@@ -551,17 +470,11 @@ body {
       <p>Colvert Columbo, en retard comme toujours, débarqua avec son imperméable froissé. « Oh, excusez-moi, juste une dernière petite question… Est-ce que quelqu'un a vérifié si les rois avaient leur téléphone sur eux ? Non ? Ah, dommage. »</p>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🔍</span>
-          <span class="placeholder-text">Sherlock Coins enquête</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/sherlock-enquete.jpg" alt="Sherlock Coins enquête">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🕵️</span>
-          <span class="placeholder-text">L'équipe de détectives</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/equipe-detectives.jpg" alt="L'équipe de détectives">
         </div>
       </div>
     </div>
@@ -586,17 +499,11 @@ body {
       <p>« En route, les filles ! » lança Plumia. Et les sept agents spéciaux s'envolèrent vers la montagne.</p>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">💅</span>
-          <span class="placeholder-text">Les 7 Totally Spies au QG</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/totally-spies-qg.jpg" alt="Les 7 Totally Spies au QG">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🚀</span>
-          <span class="placeholder-text">Décollage vers la montagne</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/decollage-montagne.jpg" alt="Décollage vers la montagne">
         </div>
       </div>
     </div>
@@ -623,23 +530,14 @@ body {
       <p>Plus loin, une bande de lutins géants — trois fois la taille d'un canard — jouaient aux cartes en riant bruyamment. Ils confirmèrent : des types louches étaient passés avec des gros sacs, direction le sommet.</p>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🦛</span>
-          <span class="placeholder-text">Face aux hippopotames</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/hippopotames.jpg" alt="Face aux hippopotames">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🦕</span>
-          <span class="placeholder-text">Les dinosaures et le mot de passe</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/dinosaures.jpg" alt="Les dinosaures et le mot de passe">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🧝</span>
-          <span class="placeholder-text">Les lutins géants</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/lutins-geants.jpg" alt="Les lutins géants">
         </div>
       </div>
     </div>
@@ -664,23 +562,14 @@ body {
       <p>Crampon leur traça un itinéraire d'escalade, Flocon leur prêta des raquettes, et Avalanche promit de créer une diversion en déclenchant une mini-avalanche de confettis si nécessaire.</p>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">⛷️</span>
-          <span class="placeholder-text">Flocon en pleine descente</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/flocon-descente.jpg" alt="Flocon en pleine descente">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🧗</span>
-          <span class="placeholder-text">Crampon sur la paroi</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/crampon-paroi.jpg" alt="Crampon sur la paroi">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🏔️</span>
-          <span class="placeholder-text">L'ascension vers la grotte</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/ascension-grotte.jpg" alt="L'ascension vers la grotte">
         </div>
       </div>
     </div>
@@ -707,23 +596,14 @@ body {
       <p>Édouard le Magnifique se leva, secoua ses plumes royales et déclara : « Nous avons été royalement ennuyés. Qu'on juge ces malfrats ! »</p>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🎭</span>
-          <span class="placeholder-text">Palmipette déguisée en livreuse</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/palmipette-livreuse.jpg" alt="Palmipette déguisée en livreuse">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">💥</span>
-          <span class="placeholder-text">L'assaut — tout le monde surgit !</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/assaut-final.jpg" alt="L'assaut — tout le monde surgit !">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🎉</span>
-          <span class="placeholder-text">Libération des rois</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/liberation-rois.jpg" alt="Libération des rois">
         </div>
       </div>
     </div>
@@ -757,23 +637,14 @@ body {
       </div>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🏛️</span>
-          <span class="placeholder-text">Le tribunal en session</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/tribunal.jpg" alt="Le tribunal en session">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">⚖️</span>
-          <span class="placeholder-text">Les juges et les avocats</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/juges-avocats.jpg" alt="Les juges et les avocats">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">😬</span>
-          <span class="placeholder-text">Les mafieux face au verdict</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/mafieux-verdict.jpg" alt="Les mafieux face au verdict">
         </div>
       </div>
     </div>
@@ -796,17 +667,11 @@ body {
       <div class="epilogue-motto">« Qui s'en prend à un canard<br>s'en prend à tous les canards. »</div>
 
       <div class="photo-grid">
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🎊</span>
-          <span class="placeholder-text">Le grand banquet final</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/banquet-final.jpg" alt="Le grand banquet final">
         </div>
-        <div class="photo-slot" onclick="this.querySelector('input').click()">
-          <input type="file" accept="image/*" onchange="loadPhoto(this)">
-          <span class="placeholder-icon">🦆</span>
-          <span class="placeholder-text">Tous les canards réunis</span>
-          <button class="remove-btn" onclick="removePhoto(event, this)">×</button>
+        <div class="photo-slot">
+          <img src="/images/tous-canards-reunis.jpg" alt="Tous les canards réunis">
         </div>
       </div>
     </div>
@@ -817,7 +682,6 @@ body {
 <div class="ending">
   <div class="fin">— FIN —</div>
   <div class="note">Une histoire en 30 canards, ni un de plus, ni un de moins.<br>Retrouvés dans un appartement, ils avaient visiblement beaucoup de choses à raconter.</div>
-  <div style="margin-top:1rem; font-family:'Caveat',cursive; font-size:1rem; opacity:0.4;">Cliquez sur les emplacements pour ajouter vos photos 📸</div>
 </div>
 
 <!-- PRINT BUTTON -->
@@ -825,49 +689,6 @@ body {
   <button onclick="window.print()">🖨️ Imprimer / PDF</button>
 </div>
 
-<script>
-function loadPhoto(input) {
-  if (input.files && input.files[0]) {
-    const reader = new FileReader();
-    const slot = input.closest('.photo-slot');
-    reader.onload = function(e) {
-      // Remove existing img if any
-      const existing = slot.querySelector('img');
-      if (existing) existing.remove();
-      
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      slot.appendChild(img);
-      slot.classList.add('has-photo');
-      
-      // Hide placeholder
-      const icon = slot.querySelector('.placeholder-icon');
-      const text = slot.querySelector('.placeholder-text');
-      if (icon) icon.style.display = 'none';
-      if (text) text.style.display = 'none';
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-function removePhoto(event, btn) {
-  event.stopPropagation();
-  const slot = btn.closest('.photo-slot');
-  const img = slot.querySelector('img');
-  if (img) img.remove();
-  slot.classList.remove('has-photo');
-  
-  // Reset file input
-  const input = slot.querySelector('input[type="file"]');
-  if (input) input.value = '';
-  
-  // Show placeholder again
-  const icon = slot.querySelector('.placeholder-icon');
-  const text = slot.querySelector('.placeholder-text');
-  if (icon) icon.style.display = '';
-  if (text) text.style.display = '';
-}
-</script>
 
 </body>
 </html>
